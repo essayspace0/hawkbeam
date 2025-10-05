@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: hawkbeam-frontend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run optimize-images && npm run build
+    startCommand: cd frontend && npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0
+      - key: NPM_CONFIG_PRODUCTION
+        value: false
+    staticPublishPath: ./frontend/dist
